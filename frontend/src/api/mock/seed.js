@@ -1,0 +1,136 @@
+// Datos de prueba basados en los INSERT del script de la semana 2.
+// Se ajustaron los estados de las cajas y las ventas para que cumplan RN10 y RN11
+// (solo se venden cajas disponibles; una caja vendida queda en estado "Vendida").
+// Se agregaron usuarios de acceso para cada rol: la contraseña de todos es gia123.
+
+export function createSeed() {
+  return {
+    materiales: [
+      { id: 1, nombre: 'Lámina de acero 3mm', cantidad: 120, tipo: 'Metal' },
+      { id: 2, nombre: 'Pintura electrostática', cantidad: 60, tipo: 'Acabado' },
+      { id: 3, nombre: 'Cerradura electrónica', cantidad: 40, tipo: 'Seguridad' },
+      { id: 4, nombre: 'Bisagra reforzada', cantidad: 200, tipo: 'Herrajes' },
+      { id: 5, nombre: 'Espuma ignífuga', cantidad: 80, tipo: 'Aislante' },
+      { id: 6, nombre: 'Tornillo hexagonal 1/4"', cantidad: 8, tipo: 'Tornillería' },
+    ],
+    herramientas: [
+      { id: 1, nombre: 'Soldadora MIG', cantidad: 5, tipo: 'Eléctrica' },
+      { id: 2, nombre: 'Taladro industrial', cantidad: 8, tipo: 'Eléctrica' },
+      { id: 3, nombre: 'Amoladora angular', cantidad: 10, tipo: 'Eléctrica' },
+      { id: 4, nombre: 'Juego de llaves', cantidad: 15, tipo: 'Manual' },
+      { id: 5, nombre: 'Prensa hidráulica', cantidad: 2, tipo: 'Hidráulica' },
+    ],
+    modelos: [
+      { referencia: 'CF-100', descripcion: 'Caja fuerte compacta para el hogar', capacidad: 20, peso: 25.5, alto: 35, ancho: 40 },
+      { referencia: 'CF-200', descripcion: 'Caja fuerte mediana con clave digital', capacidad: 45, peso: 48, alto: 50, ancho: 45 },
+      { referencia: 'CF-300', descripcion: 'Caja fuerte de oficina ignífuga', capacidad: 70, peso: 85, alto: 65, ancho: 50 },
+      { referencia: 'CF-400', descripcion: 'Caja fuerte empotrable de pared', capacidad: 30, peso: 32, alto: 40, ancho: 35 },
+      { referencia: 'CF-500', descripcion: 'Caja fuerte industrial de alta seguridad', capacidad: 150, peso: 220, alto: 120, ancho: 70 },
+    ],
+    lista_material: [
+      { id: 1, id_modelo: 'CF-100', id_material: 1, cantidad: 4 },
+      { id: 2, id_modelo: 'CF-100', id_material: 4, cantidad: 2 },
+      { id: 3, id_modelo: 'CF-200', id_material: 3, cantidad: 1 },
+      { id: 4, id_modelo: 'CF-200', id_material: 1, cantidad: 6 },
+      { id: 5, id_modelo: 'CF-300', id_material: 4, cantidad: 6 },
+      { id: 6, id_modelo: 'CF-300', id_material: 5, cantidad: 4 },
+      { id: 7, id_modelo: 'CF-400', id_material: 2, cantidad: 2 },
+      { id: 8, id_modelo: 'CF-500', id_material: 5, cantidad: 10 },
+      { id: 9, id_modelo: 'CF-500', id_material: 1, cantidad: 20 },
+    ],
+    lista_herramienta: [
+      { id: 1, id_modelo: 'CF-100', id_herramienta: 1, cantidad: 1 },
+      { id: 2, id_modelo: 'CF-200', id_herramienta: 2, cantidad: 2 },
+      { id: 3, id_modelo: 'CF-300', id_herramienta: 3, cantidad: 1 },
+      { id: 4, id_modelo: 'CF-400', id_herramienta: 4, cantidad: 1 },
+      { id: 5, id_modelo: 'CF-500', id_herramienta: 5, cantidad: 1 },
+    ],
+    cajas: [
+      { serial: 'SN-0001', precio: 350000, estado: 'Disponible', observaciones: 'Sin novedades', referencia: 'CF-100' },
+      { serial: 'SN-0002', precio: 720000, estado: 'Vendida', observaciones: 'Entregada al cliente', referencia: 'CF-200' },
+      { serial: 'SN-0003', precio: 1250000, estado: 'Disponible', observaciones: 'Pequeño rayón en la tapa', referencia: 'CF-300' },
+      { serial: 'SN-0004', precio: 540000, estado: 'En producción', observaciones: 'Pendiente de acabado', referencia: 'CF-400' },
+      { serial: 'SN-0005', precio: 3800000, estado: 'Vendida', observaciones: 'Instalación incluida', referencia: 'CF-500' },
+      { serial: 'SN-0006', precio: 760000, estado: 'Disponible', observaciones: '', referencia: 'CF-200' },
+      { serial: 'SN-0007', precio: 350000, estado: 'Defectuosa', observaciones: 'Falla en la cerradura', referencia: 'CF-100' },
+    ],
+    empleados: [
+      { id: 1, nombre: 'Carlos Ramírez', telefono: '3001112233', email: 'carlos.ramirez@empresa.com', cargo: 'Soldador', rol: null },
+      { id: 2, nombre: 'Laura Gómez', telefono: '3012223344', email: 'laura.gomez@empresa.com', cargo: 'Supervisora de planta', rol: 'GESTOR_PRODUCCION' },
+      { id: 3, nombre: 'Andrés Torres', telefono: '3023334455', email: 'andres.torres@empresa.com', cargo: 'Ensamblador', rol: null },
+      { id: 4, nombre: 'María Fernández', telefono: '3034445566', email: 'maria.fernandez@empresa.com', cargo: 'Vendedora', rol: 'GESTOR_VENTAS' },
+      { id: 5, nombre: 'Jorge Medina', telefono: '3045556677', email: 'jorge.medina@empresa.com', cargo: 'Almacenista', rol: 'GESTOR_ALMACEN' },
+      { id: 6, nombre: 'Patricia Duarte', telefono: '3056667788', email: 'admin@empresa.com', cargo: 'Jefe administrativa', rol: 'ADMINISTRADOR' },
+      { id: 7, nombre: 'Sofía Rojas', telefono: '3067778899', email: 'sofia.rojas@empresa.com', cargo: 'Contadora', rol: 'CONTADOR' },
+    ],
+    encargados: [
+      { serial_caja_fuerte: 'SN-0001', id_empleado: 1 },
+      { serial_caja_fuerte: 'SN-0001', id_empleado: 3 },
+      { serial_caja_fuerte: 'SN-0002', id_empleado: 2 },
+      { serial_caja_fuerte: 'SN-0003', id_empleado: 3 },
+      { serial_caja_fuerte: 'SN-0004', id_empleado: 1 },
+      { serial_caja_fuerte: 'SN-0005', id_empleado: 1 },
+      { serial_caja_fuerte: 'SN-0006', id_empleado: 3 },
+      { serial_caja_fuerte: 'SN-0007', id_empleado: 1 },
+    ],
+    prestamos: [
+      { id: 1, id_empleado: 1, id_herramienta: 1, fecha_prestamo: '2026-10-01', fecha_devolucion: '2026-10-02', observaciones: 'Devuelta en buen estado' },
+      { id: 2, id_empleado: 2, id_herramienta: 2, fecha_prestamo: '2026-10-05', fecha_devolucion: '2026-10-06', observaciones: 'Sin novedades' },
+      { id: 3, id_empleado: 3, id_herramienta: 3, fecha_prestamo: '2026-10-10', fecha_devolucion: null, observaciones: 'Aún en uso' },
+      { id: 4, id_empleado: 4, id_herramienta: 4, fecha_prestamo: '2026-10-12', fecha_devolucion: '2026-10-13', observaciones: 'Falta una llave' },
+      { id: 5, id_empleado: 5, id_herramienta: 5, fecha_prestamo: '2026-10-15', fecha_devolucion: null, observaciones: '' },
+    ],
+    clientes: [
+      { id: 1, nombre: 'Ana Martínez', email: 'ana.martinez@correo.com', telefono: '3101234567' },
+      { id: 2, nombre: 'Pedro Sánchez', email: 'pedro.sanchez@correo.com', telefono: '3112345678' },
+      { id: 3, nombre: 'Joyería El Diamante', email: 'contacto@eldiamante.com', telefono: '3123456789' },
+      { id: 4, nombre: 'Banco Regional', email: 'compras@bancoregional.co', telefono: '3134567890' },
+      { id: 5, nombre: 'Luisa Herrera', email: 'luisa.herrera@correo.com', telefono: '3145678901' },
+    ],
+    ventas: [
+      { id: 1, fecha: '2026-09-18', id_cliente: 2 },
+      { id: 2, fecha: '2026-10-02', id_cliente: 4 },
+    ],
+    detalle_venta: [
+      { id: 1, id_venta: 1, serial_caja_fuerte: 'SN-0002' },
+      { id: 2, id_venta: 2, serial_caja_fuerte: 'SN-0005' },
+    ],
+    proveedores: [
+      { id: 1, nombre: 'Aceros del Norte', email: 'ventas@acerosnorte.com', telefono: '6011112222' },
+      { id: 2, nombre: 'Pinturas Industriales', email: 'info@pinturasind.com', telefono: '6012223333' },
+      { id: 3, nombre: 'Seguridad Electrónica SA', email: 'pedidos@segelec.com', telefono: '6013334444' },
+      { id: 4, nombre: 'Herrajes y Más', email: 'contacto@herrajes.com', telefono: '6014445555' },
+      { id: 5, nombre: 'Aislantes Colombia', email: 'ventas@aislantescol.com', telefono: '6015556666' },
+    ],
+    solicitudes: [
+      { id: 1, fecha: '2026-08-01' },
+      { id: 2, fecha: '2026-08-15' },
+      { id: 3, fecha: '2026-09-01' },
+      { id: 4, fecha: '2026-09-20' },
+      { id: 5, fecha: '2026-10-05' },
+      { id: 6, fecha: '2026-11-10' },
+    ],
+    detalle_solicitud: [
+      { id: 1, id_solicitud_compra: 1, nombre_articulo: 'Lámina de acero 3mm', cantidad: 100, tipo: 'Material' },
+      { id: 2, id_solicitud_compra: 2, nombre_articulo: 'Pintura electrostática', cantidad: 50, tipo: 'Material' },
+      { id: 3, id_solicitud_compra: 3, nombre_articulo: 'Cerradura electrónica', cantidad: 30, tipo: 'Material' },
+      { id: 4, id_solicitud_compra: 4, nombre_articulo: 'Soldadora MIG', cantidad: 2, tipo: 'Herramienta' },
+      { id: 5, id_solicitud_compra: 5, nombre_articulo: 'Espuma ignífuga', cantidad: 60, tipo: 'Material' },
+      { id: 6, id_solicitud_compra: 6, nombre_articulo: 'Tornillo hexagonal 1/4"', cantidad: 500, tipo: 'Material' },
+    ],
+    compras: [
+      { id: 1, fecha: '2026-08-05', observaciones: 'Entrega completa', id_solicitud_compra: 1, proveedor: 1 },
+      { id: 2, fecha: '2026-08-20', observaciones: 'Entrega con retraso', id_solicitud_compra: 2, proveedor: 2 },
+      { id: 3, fecha: '2026-09-05', observaciones: 'Pago a 30 días', id_solicitud_compra: 3, proveedor: 3 },
+      { id: 4, fecha: '2026-09-25', observaciones: 'Incluye garantía', id_solicitud_compra: 4, proveedor: 4 },
+      { id: 5, fecha: '2026-10-08', observaciones: 'Pendiente de recepción', id_solicitud_compra: 5, proveedor: 5 },
+    ],
+    detalle_compra: [
+      { id: 1, id_compra: 1, nombre: 'Lámina de acero 3mm', cantidad: 100 },
+      { id: 2, id_compra: 2, nombre: 'Pintura electrostática', cantidad: 50 },
+      { id: 3, id_compra: 3, nombre: 'Cerradura electrónica', cantidad: 30 },
+      { id: 4, id_compra: 4, nombre: 'Soldadora MIG', cantidad: 2 },
+      { id: 5, id_compra: 5, nombre: 'Espuma ignífuga', cantidad: 60 },
+    ],
+  };
+}
